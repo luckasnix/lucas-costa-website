@@ -1,0 +1,51 @@
+.container {
+  width: 100%;
+  height: 80px;
+  padding: 0 40px;
+  background: #cccccc;
+}
+
+.limiter {
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.logo {
+  display: grid;
+  align-content: center;
+}
+
+.navigation {
+  display: grid;
+  align-content: center;
+  ul {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 32px;
+  }
+}
+
+.localeSwitcher {
+  display: grid;
+  align-content: center;
+  ul {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 8px;
+    li {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: box-shadow 400ms ease-out;
+      &.active {
+        box-shadow: 0 0 0 4px #000000bf;
+      }
+    }
+  }
+}
