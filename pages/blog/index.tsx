@@ -1,10 +1,9 @@
-import Header from '../../containers/header'
+import Layout from '../../containers/layout'
 
 export default function Blog() {
   return (
-    <>
-      <Header/>
+    <Layout>
       <h2>Página "blog"</h2>
-    </>
+    </Layout>
   )
 }
