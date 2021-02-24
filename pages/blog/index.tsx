@@ -1,9 +1,43 @@
+import { ReactNode } from 'react'
+import { GetServerSideProps } from 'next'
+import { getBlogPosts, BlogPost } from '../../utils/sanity'
 import Layout from '../../containers/layout'
 
-export default function Blog() {
+export const getServerSideProps: GetServerSideProps = async () => {
+  const blogPosts = await getBlogPosts()
+
+  return {
+    props: {
+      blogPosts
+    }
+  }
+}
+
+export interface BlogProps {
+  blogPosts: BlogPost[]
+}
+
+export default function Blog({ blogPosts }: BlogProps) {
+  let content: ReactNode
+  if (blogPosts && blogPosts.length) {
+    content = (
+      <ul>
+        {blogPosts.map(blogPost => (
+          <li key={blogPost?.slug}>
+            <h2>{blogPost?.title}</h2>
+            <p>{blogPost?.description}</p>
+            <time>{blogPost?.date}</time>
+          </li>
+        ))}
+      </ul>
+    )
+  } else {
+    content = <p>Nenhuma postagem publicada</p>
+  }
+  
   return (
     <Layout>
-      <h2>Página "blog"</h2>
+      {content}
     </Layout>
   )
 }
