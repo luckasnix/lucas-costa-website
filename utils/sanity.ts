@@ -1,4 +1,5 @@
 import sanityClient from '@sanity/client'
+import imageUrlBuilder from '@sanity/image-url'
 
 const client = sanityClient({
   projectId: process.env.SANITY_PROJECT_ID,
@@ -36,4 +37,10 @@ export const getBlogPosts: GetBlogPosts = async () => {
   `)
 
   return blogPosts
+}
+
+const builder = imageUrlBuilder(client)
+
+export function urlFor(src: ImageReference) {
+  return builder.image(src)
 }
