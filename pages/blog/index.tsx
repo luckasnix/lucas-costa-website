@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { GetServerSideProps } from 'next'
 import { getBlogPosts, BlogPost, urlFor } from '../../utils/sanity'
 import Layout from '../../containers/layout'
+import Feed from '../../containers/feed'
 import Card from '../../components/card'
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -22,7 +23,7 @@ export default function Blog({ blogPosts }: BlogProps) {
   let content: ReactNode
   if (blogPosts && blogPosts.length) {
     content = (
-      <ul>
+      <Feed>
         {blogPosts.map(blogPost => (
           <li key={blogPost?.slug}>
             <Card
@@ -33,7 +34,7 @@ export default function Blog({ blogPosts }: BlogProps) {
             />
           </li>
         ))}
-      </ul>
+      </Feed>
     )
   } else {
     content = <p>Nenhuma postagem publicada</p>
