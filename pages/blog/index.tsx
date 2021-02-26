@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { GetServerSideProps } from 'next'
 import { getBlogPosts, BlogPost, urlFor } from '../../utils/sanity'
 import Layout from '../../containers/layout'
+import FormattedDate from '../../components/formatted-date'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const blogPosts = await getBlogPosts()
@@ -27,7 +28,7 @@ export default function Blog({ blogPosts }: BlogProps) {
             <img src={urlFor(blogPost?.coverImage).width(480).url()} alt={blogPost?.title}/>
             <h2>{blogPost?.title}</h2>
             <p>{blogPost?.description}</p>
-            <time>{blogPost?.date}</time>
+            <FormattedDate>{blogPost?.date}</FormattedDate>
           </li>
         ))}
       </ul>
