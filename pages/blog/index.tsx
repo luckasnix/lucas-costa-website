@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { GetServerSideProps } from 'next'
 import { getBlogPosts, BlogPost, urlFor } from '../../utils/sanity'
 import Layout from '../../containers/layout'
-import FormattedDate from '../../components/formatted-date'
+import Card from '../../components/card'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const blogPosts = await getBlogPosts()
@@ -25,10 +25,12 @@ export default function Blog({ blogPosts }: BlogProps) {
       <ul>
         {blogPosts.map(blogPost => (
           <li key={blogPost?.slug}>
-            <img src={urlFor(blogPost?.coverImage).width(480).url()} alt={blogPost?.title}/>
-            <h2>{blogPost?.title}</h2>
-            <p>{blogPost?.description}</p>
-            <FormattedDate>{blogPost?.date}</FormattedDate>
+            <Card
+              coverImageUrl={urlFor(blogPost?.coverImage).width(480).url()}
+              date={blogPost?.date}
+              title={blogPost?.title}
+              description={blogPost?.description}
+            />
           </li>
         ))}
       </ul>
