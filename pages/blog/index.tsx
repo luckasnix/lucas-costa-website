@@ -27,6 +27,7 @@ export default function Blog({ blogPosts }: BlogProps) {
         {blogPosts.map(blogPost => (
           <li key={blogPost?.slug}>
             <Card
+              slug={blogPost?.slug}
               coverImageUrl={urlFor(blogPost?.coverImage).width(480).url()}
               date={blogPost?.date}
               title={blogPost?.title}
