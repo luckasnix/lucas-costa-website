@@ -1,0 +1,121 @@
+.container {
+  width: 100%;
+  padding: 40px;
+}
+
+.limiter {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+}
+
+.head {
+  display: grid;
+  gap: 12px;
+  h1 {
+    font-size: 40px;
+    text-align: center;
+  }
+  p {
+    text-align: center;
+  }
+  time {
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+.authorSnippet {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  align-content: center;
+  gap: 12px;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  span {
+    font-size: 12px;
+    align-self: center;
+  }
+}
+
+.coverImage {
+  img {
+    width: 100%;
+  }
+}
+
+.blockContent {
+  display: grid;
+  gap: 12px;
+  h2 {
+    font-size: 32px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+  h6 {
+    font-size: 12px;
+  }
+  p {
+    text-align: justify;
+    text-indent: 40px;
+    line-height: 1.5;
+  }
+  a {
+    color: #0000ff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  ul, ol {
+    list-style-position: inside;
+    li {
+      text-align: justify;
+      text-indent: 40px;
+      line-height: 1.5;
+    }
+  }
+  ul {
+    list-style-type: circle;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  figure {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    img {
+      width: 100%;
+      max-width: 480px;
+    }
+    figcaption {
+      width: 100%;
+      max-width: 480px;
+      font-size: 12px;
+      font-style: italic;
+      text-align: center;
+    }
+  }
+  blockquote {
+    padding: 20px;
+    border-left: 4px solid #7c7c7c;
+    font-style: italic;
+    text-align: justify;
+    text-indent: 20px;
+    line-height: 1.5;
+    background: #eeeeee;
+  }
+}

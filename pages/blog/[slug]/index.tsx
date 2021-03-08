@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
-import { getBlogPost, BlogPost } from '../../../utils/sanity'
+import Article from '../../../containers/article'
+import { getBlogPost, BlogPost, urlFor } from '../../../utils/sanity'
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   let { slug } = params
@@ -20,5 +21,15 @@ export interface PostProps {
 }
 
 export default function Post({ blogPost }: PostProps) {
-  return <h1>{blogPost.title}</h1>
+  return (
+    <Article
+      title={blogPost.title}
+      description={blogPost.description}
+      date={blogPost.date}
+      authorName={blogPost.author.name}
+      authorAvatarUrl={urlFor(blogPost.author.avatar).width(40).url()}
+      coverImageUrl={urlFor(blogPost.coverImage).width(720).url()}
+      content={blogPost.content}
+    />
+  )
 }
