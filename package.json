@@ -12,15 +12,16 @@
     "@sanity/client": "^2.2.6",
     "@sanity/image-url": "^0.140.22",
     "date-fns": "^2.17.0",
+    "highlight.js": "^10.6.0",
     "next": "10.0.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-syntax-highlighter": "^15.4.3",
     "sass": "^1.32.6"
   },
   "devDependencies": {
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.2",
     "typescript": "^4.1.3"
   }
 }

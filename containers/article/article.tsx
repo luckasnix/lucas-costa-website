@@ -1,6 +1,5 @@
 import BlockContent from '@sanity/block-content-to-react'
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import { dracula } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import HighlightedCode from '../../components/highlighted-code'
 import FormattedDate from '../../components/formatted-date'
 import { urlFor, ContentItem } from '../../utils/sanity'
 import styles from './article.module.scss'
@@ -23,13 +22,10 @@ const serializers = {
         <figcaption>{caption}</figcaption>
       </figure>
     ),
-    code: ({ node: { filename, language, code } }) => (
-      <div>
-        <small>{filename}</small>
-        <SyntaxHighlighter language={language} style={dracula}>
-          {code}
-        </SyntaxHighlighter>
-      </div>
+    code: ({ node: { code, filename, language } }) => (
+      <HighlightedCode filename={filename} language={language}>
+        {code}
+      </HighlightedCode>
     )
   }
 }
