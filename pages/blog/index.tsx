@@ -4,6 +4,7 @@ import { getBlogPosts, BlogPost, urlFor } from '../../utils/sanity'
 import Layout from '../../containers/layout'
 import Feed from '../../containers/feed'
 import Card from '../../components/card'
+import Message from '../../containers/message'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const blogPosts = await getBlogPosts()
@@ -38,7 +39,12 @@ export default function Blog({ blogPosts }: BlogProps) {
       </Feed>
     )
   } else {
-    content = <p>Nenhuma postagem publicada!</p>
+    content = (
+      <Message
+        title='Nenhuma postagem encontrada'
+        description='Não há postagens para a localidade selecionada.Tente alterar a localidade atual.'
+      />
+    )
   }
   
   return (
