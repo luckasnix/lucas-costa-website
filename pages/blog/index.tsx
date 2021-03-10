@@ -38,7 +38,7 @@ export default function Blog({ blogPosts }: BlogProps) {
       </Feed>
     )
   } else {
-    content = <p>Nenhuma postagem publicada</p>
+    content = <p>Nenhuma postagem publicada!</p>
   }
   
   return (
