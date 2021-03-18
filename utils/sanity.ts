@@ -64,7 +64,7 @@ export type GetBlogPosts = () => Promise<BlogPost[]>
 
 export const getBlogPosts: GetBlogPosts = async () => {
   const blogPosts = await client.fetch(`
-    *[_type == 'post'] {
+    *[_type == 'post'] | order(date desc) {
       'slug': slug.current,
       title,
       description,
