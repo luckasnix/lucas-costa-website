@@ -14,6 +14,10 @@ body {
   font-family: 'Jura', sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6, p, span, a, b, strong, i, em, mark, small, del, ins, sub, sup {
+  word-break: break-word;
+}
+
 ol, ul {
   list-style: none;
 }
