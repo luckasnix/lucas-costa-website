@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import BrazilFlag from '../../icons/brazil-flag'
 import UsaFlag from '../../icons/usa-flag'
 import SpainFlag from '../../icons/spain-flag'
@@ -21,6 +22,8 @@ const localeOptions = [
 ]
 
 export default function Header() {
+  const { locale } = useRouter()
+
   return (
     <header className={styles.container}>
       <div className={styles.limiter}>
@@ -43,9 +46,11 @@ export default function Header() {
         <div className={styles.localeSwitcher}>
           <ul>
             {localeOptions.map(({ code, icon: Icon }) => (
-              <li key={code}>
-                <Icon/>
-              </li>
+              <Link key={code} href='/' locale={code}>
+                <li className={locale === code ? styles.active : null}>
+                  <Icon/>
+                </li>
+              </Link>
             ))}
           </ul>
         </div>
