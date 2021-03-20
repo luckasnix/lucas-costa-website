@@ -60,18 +60,18 @@ export interface BlogPost {
   author?: Author
 }
 
-export type GetBlogPosts = () => Promise<BlogPost[]>
+export type GetBlogPosts = (locale: string) => Promise<BlogPost[]>
 
-export const getBlogPosts: GetBlogPosts = async () => {
+export const getBlogPosts: GetBlogPosts = async (locale) => {
   const blogPosts = await client.fetch(`
-    *[_type == 'post'] | order(date desc) {
+    *[_type == 'post' && locale == $locale] | order(date desc) {
       'slug': slug.current,
       title,
       description,
       date,
       coverImage
     }
-  `)
+  `, { locale })
 
   return blogPosts
 }

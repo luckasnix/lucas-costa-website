@@ -6,8 +6,8 @@ import Feed from '../../containers/feed'
 import Card from '../../components/card'
 import Message from '../../containers/message'
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const blogPosts = await getBlogPosts()
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const blogPosts = await getBlogPosts(locale)
 
   return {
     props: {
