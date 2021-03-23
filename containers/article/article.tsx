@@ -5,6 +5,7 @@ import { urlFor, ContentItem } from '../../utils/sanity'
 import styles from './article.module.scss'
 
 export interface ArticleProps {
+  locale: string
   title: string
   description: string
   date: string
@@ -30,14 +31,14 @@ const serializers = {
   }
 }
 
-export default function Article({ title, description, date, authorName, authorAvatarUrl, coverImageUrl, content }: ArticleProps) {
+export default function Article({ locale, title, description, date, authorName, authorAvatarUrl, coverImageUrl, content }: ArticleProps) {
   return (
     <article className={styles.container}>
       <div className={styles.limiter}>
         <div className={styles.head}>
           <h1>{title}</h1>
           <p>{description}</p>
-          <FormattedDate>{date}</FormattedDate>
+          <FormattedDate locale={locale}>{date}</FormattedDate>
         </div>
         <div className={styles.authorSnippet}>
           <img src={authorAvatarUrl} alt={authorName}/>

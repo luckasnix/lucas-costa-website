@@ -11,16 +11,18 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 
   return {
     props: {
+      locale,
       blogPosts
     }
   }
 }
 
 export interface BlogProps {
+  locale: string
   blogPosts: BlogPost[]
 }
 
-export default function Blog({ blogPosts }: BlogProps) {
+export default function Blog({ locale, blogPosts }: BlogProps) {
   let content: ReactNode
   if (blogPosts && blogPosts.length) {
     content = (
@@ -28,6 +30,7 @@ export default function Blog({ blogPosts }: BlogProps) {
         {blogPosts.map(blogPost => (
           <li key={blogPost?.slug}>
             <Card
+              locale={locale}
               slug={blogPost?.slug}
               coverImageUrl={urlFor(blogPost?.coverImage).width(480).url()}
               date={blogPost?.date}
