@@ -51,7 +51,7 @@ export default function Blog({ locale, blogPosts }: BlogProps) {
   }
   
   return (
-    <Layout>
+    <Layout locale={locale}>
       {content}
     </Layout>
   )

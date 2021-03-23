@@ -50,7 +50,7 @@ export default function Post({ locale, blogPost }: PostProps) {
   }
 
   return (
-    <Layout>
+    <Layout locale={locale}>
       {content}
     </Layout>
   )

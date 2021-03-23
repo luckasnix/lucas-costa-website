@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import BrazilFlag from '../../icons/brazil-flag'
 import UsaFlag from '../../icons/usa-flag'
 import SpainFlag from '../../icons/spain-flag'
@@ -21,9 +20,11 @@ const localeOptions = [
   }
 ]
 
-export default function Header() {
-  const { locale } = useRouter()
+export interface HeaderProps {
+  locale: string
+}
 
+export default function Header({ locale }: HeaderProps) {
   return (
     <header className={styles.container}>
       <div className={styles.limiter}>
