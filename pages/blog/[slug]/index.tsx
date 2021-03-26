@@ -1,11 +1,24 @@
 import { ReactNode } from 'react'
-import { GetServerSideProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import Layout from '../../../containers/layout'
 import Article from '../../../containers/article'
 import Message from '../../../containers/message'
-import { getBlogPost, BlogPost, urlFor } from '../../../utils/sanity'
+import { getBlogPostPaths, getBlogPost, BlogPost, urlFor } from '../../../utils/sanity'
 
-export const getServerSideProps: GetServerSideProps = async ({ locale, params }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const blogPostPaths = await getBlogPostPaths()
+  const paths = blogPostPaths.map(({ locale, slug }) => ({
+    params: { slug },
+    locale
+  }))
+
+  return {
+    paths,
+    fallback: true
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
   let { slug } = params
   if (slug instanceof Array) {
     slug = slug[0]
