@@ -1,8 +1,10 @@
 import { ReactNode } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import Layout from '../../../containers/layout'
 import Article from '../../../containers/article'
 import Message from '../../../containers/message'
+import Fallback from '../../../containers/fallback'
 import { getBlogPostPaths, getBlogPost, BlogPost, urlFor } from '../../../utils/sanity'
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -39,6 +41,12 @@ export interface PostProps {
 }
 
 export default function Post({ locale, blogPost }: PostProps) {
+  const { isFallback } = useRouter()
+
+  if (isFallback) {
+    return <Fallback/>
+  }
+
   let content: ReactNode
   if (blogPost) {
     content = (
