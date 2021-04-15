@@ -1,7 +1,8 @@
 import BlockContent from '@sanity/block-content-to-react'
 import HighlightedCode from '../../components/highlighted-code'
 import FormattedDate from '../../components/formatted-date'
-import { urlFor, ContentItem } from '../../utils/sanity'
+import { urlFor } from '../../cms/functions'
+import { ContentItem } from '../../cms/types'
 import styles from './article.module.scss'
 
 export interface ArticleProps {

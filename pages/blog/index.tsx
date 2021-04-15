@@ -1,10 +1,11 @@
 import { ReactNode } from 'react'
 import { GetServerSideProps } from 'next'
-import { getBlogPosts, BlogPost, urlFor } from '../../utils/sanity'
 import Layout from '../../containers/layout'
 import Feed from '../../containers/feed'
 import Card from '../../components/card'
 import Message from '../../containers/message'
+import { getBlogPosts, urlFor } from '../../cms/functions'
+import { BlogPost } from '../../cms/types'
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const blogPosts = await getBlogPosts(locale)

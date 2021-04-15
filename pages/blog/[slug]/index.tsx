@@ -5,7 +5,8 @@ import Layout from '../../../containers/layout'
 import Article from '../../../containers/article'
 import Message from '../../../containers/message'
 import Fallback from '../../../containers/fallback'
-import { getBlogPostPaths, getBlogPost, BlogPost, urlFor } from '../../../utils/sanity'
+import { getBlogPostPaths, getBlogPost, urlFor } from  '../../../cms/functions'
+import { BlogPost } from '../../../cms/types'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const blogPostPaths = await getBlogPostPaths()
