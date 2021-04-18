@@ -8,7 +8,7 @@ export const blogPostPathsQuery = groq`
 `
 
 export const blogPostsQuery = groq`
-  *[_type == 'post' && locale == $locale] | order(date desc) {
+  *[_type == 'post' && locale == $locale] | order(date desc, title asc) {
     'slug': slug.current,
     title,
     description,
