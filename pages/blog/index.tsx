@@ -2,10 +2,12 @@ import { ReactNode } from 'react'
 import { GetServerSideProps } from 'next'
 import Layout from '../../containers/layout'
 import Feed from '../../containers/feed'
+import Pagination from '../../containers/pagination'
 import Card from '../../components/card'
 import Message from '../../containers/message'
 import { getBlogPostSlugs, getBlogPosts, urlFor } from '../../cms/functions'
 import { BlogPost } from '../../cms/types'
+import { BLOG_POSTS_PER_PAGE } from '../../utils/constants'
 
 export const getServerSideProps: GetServerSideProps = async ({ query, locale }) => {
   let { page } = query
@@ -14,11 +16,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
   }
   const blogPostSlugs = await getBlogPostSlugs(locale)
   const blogPosts = await getBlogPosts(locale, +page)
+  const numOfPages = Math.ceil(blogPostSlugs.length / BLOG_POSTS_PER_PAGE)
 
   return {
     props: {
       locale,
-      blogPosts
+      blogPosts,
+      page,
+      numOfPages
     }
   }
 }
@@ -26,26 +31,31 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
 export interface BlogProps {
   locale: string
   blogPosts: BlogPost[]
+  page: string
+  numOfPages: number
 }
 
-export default function Blog({ locale, blogPosts }: BlogProps) {
+export default function Blog({ locale, blogPosts, page, numOfPages }: BlogProps) {
   let content: ReactNode
   if (blogPosts && blogPosts.length) {
     content = (
-      <Feed>
-        {blogPosts.map(blogPost => (
-          <li key={blogPost?.slug}>
-            <Card
-              locale={locale}
-              slug={blogPost?.slug}
-              coverImageUrl={urlFor(blogPost?.coverImage).width(480).url()}
-              date={blogPost?.date}
-              title={blogPost?.title}
-              description={blogPost?.description}
-            />
-          </li>
-        ))}
-      </Feed>
+      <>
+        <Feed>
+          {blogPosts.map(blogPost => (
+            <li key={blogPost?.slug}>
+              <Card
+                locale={locale}
+                slug={blogPost?.slug}
+                coverImageUrl={urlFor(blogPost?.coverImage).width(480).url()}
+                date={blogPost?.date}
+                title={blogPost?.title}
+                description={blogPost?.description}
+              />
+            </li>
+          ))}
+        </Feed>
+        <Pagination curPage={+page} numOfPages={numOfPages}/>
+      </>
     )
   } else {
     content = (

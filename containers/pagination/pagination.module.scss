@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+  padding: 20px 40px 40px;
+}
+
+.limiter {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas:
+    'prev cur next';
+  grid-template-columns: repeat(3, 1fr);
+  a {
+    color: #000000;
+  }
+}
+
+.prevPage {
+  grid-area: prev;
+  justify-self: start;
+}
+
+.curPage {
+  grid-area: cur;
+  justify-self: center;
+}
+
+.nextPage {
+  grid-area: next;
+  justify-self: end;
+}
