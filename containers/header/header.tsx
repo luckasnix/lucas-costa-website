@@ -38,7 +38,10 @@ export default function Header({ locale }: HeaderProps) {
         <nav className={styles.navigation}>
           <ul>
             <li>
-              <Link href='/blog'>
+              <Link href={{
+                pathname: '/blog',
+                query: { page: '1' }
+              }}>
                 <a>Blog</a>
               </Link>
             </li>

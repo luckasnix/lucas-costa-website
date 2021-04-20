@@ -4,11 +4,16 @@ import Layout from '../../containers/layout'
 import Feed from '../../containers/feed'
 import Card from '../../components/card'
 import Message from '../../containers/message'
-import { getBlogPosts, urlFor } from '../../cms/functions'
+import { getBlogPostSlugs, getBlogPosts, urlFor } from '../../cms/functions'
 import { BlogPost } from '../../cms/types'
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const blogPosts = await getBlogPosts(locale)
+export const getServerSideProps: GetServerSideProps = async ({ query, locale }) => {
+  let { page } = query
+  if (page instanceof Array) {
+    page = page[0]
+  }
+  const blogPostSlugs = await getBlogPostSlugs(locale)
+  const blogPosts = await getBlogPosts(locale, +page)
 
   return {
     props: {

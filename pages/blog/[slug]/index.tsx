@@ -21,7 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   let { slug } = params
   if (slug instanceof Array) {
     slug = slug[0]
