@@ -58,6 +58,19 @@ export default function Post({ locale, blogPost }: PostProps) {
         <meta name='twitter:title' content={`${blogPost?.title} | Lucas Costa`}/>
         <meta name='twitter:description' content={blogPost?.description}/>
         <meta name='twitter:image' content={urlFor(blogPost?.coverImage).width(720).url()}/>
+        {/* Open Graph meta tags */}
+        <meta property='og:title' content={`${blogPost?.title} | Lucas Costa`}/>
+        <meta property='og:description' content={blogPost?.description}/>
+        <meta property='og:image' content={urlFor(blogPost?.coverImage).width(720).url()}/>
+        <meta property='og:site_name' content='Lucas Costa'/>
+        <meta
+          property='og:url'
+          content={`https://lucas-costa.dev${locale !== 'pt-BR' ? `/${locale}` : ''}/blog/${blogPost?.slug}`}
+        />
+        <meta property='og:locale' content={locale.replace('-', '_')}/>
+        <meta property='og:type' content='article'/>
+        <meta property='article:author' content={blogPost?.author.name}/>
+        <meta property='article:published_time' content={blogPost?.date}/>
       </Head>
       <Layout locale={locale}>
         <Article

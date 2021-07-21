@@ -25,6 +25,7 @@ export const blogPostsQuery = groq`
 
 export const blogPostQuery = groq`
   *[_type == 'post' && slug.current == $slug] {
+    'slug': slug.current,
     title,
     description,
     date,
