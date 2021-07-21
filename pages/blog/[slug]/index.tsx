@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router'
 import Layout from '../../../containers/layout'
 import Article from '../../../containers/article'
-import Message from '../../../containers/message'
 import Fallback from '../../../containers/fallback'
 import { getBlogPostPaths, getBlogPost, urlFor } from  '../../../cms/functions'
 import { BlogPost } from '../../../cms/types'
