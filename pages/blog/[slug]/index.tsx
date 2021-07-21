@@ -54,6 +54,11 @@ export default function Post({ locale, blogPost }: PostProps) {
         {/* Basic meta tags */}
         <title>{blogPost?.title} | Lucas Costa</title>
         <meta name='description' content={blogPost?.description}/>
+        {/* Twitter card meta tags */}
+        <meta name='twitter:card' content='summary_large_image'/>
+        <meta name='twitter:title' content={`${blogPost?.title} | Lucas Costa`}/>
+        <meta name='twitter:description' content={blogPost?.description}/>
+        <meta name='twitter:image' content={urlFor(blogPost?.coverImage).width(720).url()}/>
       </Head>
       <Layout locale={locale}>
         <Article
