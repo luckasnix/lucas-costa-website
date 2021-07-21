@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head';
 import { useRouter } from 'next/router'
 import Layout from '../../../containers/layout'
 import Article from '../../../containers/article'
@@ -48,32 +48,25 @@ export default function Post({ locale, blogPost }: PostProps) {
     return <Fallback/>
   }
 
-  let content: ReactNode
-  if (blogPost) {
-    content = (
-      <Article
-        locale={locale}
-        title={blogPost?.title}
-        description={blogPost?.description}
-        date={blogPost?.date}
-        authorName={blogPost?.author.name}
-        authorAvatarUrl={urlFor(blogPost?.author?.avatar).width(40).url()}
-        coverImageUrl={urlFor(blogPost?.coverImage).width(720).url()}
-        content={blogPost?.content}
-      />
-    )
-  } else {
-    content = (
-      <Message
-        title='Postagem não encontrada'
-        description='A postagem não existe ou foi removida. Tente acessar outra.'
-      />
-    )
-  }
-
   return (
-    <Layout locale={locale}>
-      {content}
-    </Layout>
+    <>
+      <Head>
+        {/* Basic meta tags */}
+        <title>{blogPost?.title} | Lucas Costa</title>
+        <meta name='description' content={blogPost?.description}/>
+      </Head>
+      <Layout locale={locale}>
+        <Article
+          locale={locale}
+          title={blogPost?.title}
+          description={blogPost?.description}
+          date={blogPost?.date}
+          authorName={blogPost?.author.name}
+          authorAvatarUrl={urlFor(blogPost?.author?.avatar).width(40).url()}
+          coverImageUrl={urlFor(blogPost?.coverImage).width(720).url()}
+          content={blogPost?.content}
+        />
+      </Layout>
+    </>
   )
 }
